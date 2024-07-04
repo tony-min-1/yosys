@@ -39,18 +39,18 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 	.INIT19(slice_init_LSRAM(19))
 
 `define PARAMS_INIT_uSRAM \
-	.INIT0(slice_init_LSRAM(00)), \
-	.INIT1(slice_init_LSRAM(01)), \
-	.INIT2(slice_init_LSRAM(02)), \
-	.INIT3(slice_init_LSRAM(03)), \
-	.INIT4(slice_init_LSRAM(04)), \
-	.INIT5(slice_init_LSRAM(05)), \
-	.INIT6(slice_init_LSRAM(06)), \
-	.INIT7(slice_init_LSRAM(07)), \
-	.INIT8(slice_init_LSRAM(08)), \
-	.INIT9(slice_init_LSRAM(09)), \
-	.INIT10(slice_init_LSRAM(10)), \
-	.INIT11(slice_init_LSRAM(11)), \
+	.INIT0(slice_init_uSRAM(00)), \
+	.INIT1(slice_init_uSRAM(01)), \
+	.INIT2(slice_init_uSRAM(02)), \
+	.INIT3(slice_init_uSRAM(03)), \
+	.INIT4(slice_init_uSRAM(04)), \
+	.INIT5(slice_init_uSRAM(05)), \
+	.INIT6(slice_init_uSRAM(06)), \
+	.INIT7(slice_init_uSRAM(07)), \
+	.INIT8(slice_init_uSRAM(08)), \
+	.INIT9(slice_init_uSRAM(09)), \
+	.INIT10(slice_init_uSRAM(10)), \
+	.INIT11(slice_init_uSRAM(11)), \
 
 // Helper function for initializing the LSRAM
 function [1023:0] slice_init_LSRAM;

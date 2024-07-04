@@ -38,6 +38,8 @@ input PORT_W_WR_EN;
 input [ADDR_BITS-1:0] PORT_R_ADDR;
 output [PORT_R_WIDTH-1:0] PORT_R_RD_DATA;
 
+`include "brams_defs.vh"
+
 RAM64x12 #(
 	`PARAMS_INIT_uSRAM
 ) _TECHMAP_REPLACE_ (
@@ -89,6 +91,8 @@ input PORT_R_CLK;
 input PORT_R_RD_EN;
 input [ADDR_BITS-1:0] PORT_R_ADDR;
 output [PORT_R_WIDTH-1:0] PORT_R_RD_DATA;
+
+`include "brams_defs.vh"
 
 RAM64x12 #(
 	`PARAMS_INIT_uSRAM
