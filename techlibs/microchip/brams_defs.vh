@@ -50,7 +50,7 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 	.INIT8(slice_init_uSRAM(08)), \
 	.INIT9(slice_init_uSRAM(09)), \
 	.INIT10(slice_init_uSRAM(10)), \
-	.INIT11(slice_init_uSRAM(11)), \
+	.INIT11(slice_init_uSRAM(11)) \
 
 // Helper function for initializing the LSRAM
 function [1023:0] slice_init_LSRAM;
