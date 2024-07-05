@@ -33,10 +33,8 @@ struct SynthMicrochipPass : public ScriptPass {
 		log("\n");
 		log("    synth_microchip [options]\n");
 		log("\n");
-		log("This command runs synthesis for Microchip FPGAs. Operating on\n");
-		log("partly selected designs is not supported (you must submit a fully-selected \n");
-		log("design). This command creates netlists that are compatible with Microchip \n");
-		log("PolarFire devices.\n");
+		log("This command runs synthesis for Microchip FPGAs. This command creates \n");
+		log("netlists that are compatible with Microchip PolarFire devices. \n");
 		log("\n");
 		log("    -top <module>\n");
 		log("        use the specified module as the top module\n");
