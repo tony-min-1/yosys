@@ -74,11 +74,8 @@ struct SynthMicrochipPass : public ScriptPass {
 		log("        'from_label' is synonymous to 'begin', and empty 'to_label' is\n");
 		log("        synonymous to the end of the command list.\n");
 		log("\n");
-		log("    -flatten\n");
-		log("        Flatten design before synthesis.\n");
-		log("\n");
-		log("    -flatten_before_abc\n");
-		log("        Flatten design before abc tech mapping.\n");
+		log("    -noflatten\n");
+		log("        do not flatten design before synthesis\n");
 		log("\n");
 		log("    -dff\n");
 		log("        Run 'abc'/'abc9' with -dff option\n");
@@ -99,7 +96,6 @@ struct SynthMicrochipPass : public ScriptPass {
 	std::string top_opt, edif_file, blif_file, family;
 	bool flatten, retime, noiopad, noclkbuf, nobram, nocarry, nowidelut, nodsp;
 	bool abc9, dff;
-	bool flatten_before_abc;
 	int lut_size;
 
 	// debug dump switches
@@ -111,7 +107,7 @@ struct SynthMicrochipPass : public ScriptPass {
 		edif_file.clear();
 		blif_file.clear();
 		family = "polarfire";
-		flatten = false;
+		flatten = true;
 		retime = false;
 		noiopad = false;
 		noclkbuf = false;
@@ -121,7 +117,6 @@ struct SynthMicrochipPass : public ScriptPass {
 		nodsp = false;
 		abc9 = false;
 		dff = false;
-		flatten_before_abc = false;
 		lut_size = 4;
 
 		debug_memory = false;
@@ -159,12 +154,8 @@ struct SynthMicrochipPass : public ScriptPass {
 				run_to = args[argidx].substr(pos + 1);
 				continue;
 			}
-			if (args[argidx] == "-flatten") {
-				flatten = true;
-				continue;
-			}
-			if (args[argidx] == "-flatten_before_abc") {
-				flatten_before_abc = true;
+			if (args[argidx] == "-noflatten") {
+				flatten = false;
 				continue;
 			}
 			if (args[argidx] == "-retime") {
@@ -477,8 +468,6 @@ struct SynthMicrochipPass : public ScriptPass {
 
 		if (check_label("map_luts")) {
 			run("opt_expr -mux_undef -noclkinv");
-			if (flatten_before_abc)
-				run("flatten");
 			if (help_mode)
 				run("abc -luts 2:2,3,6:5[,10,20] [-dff] [-D 1]", "(option for '-nowidelut', '-dff', '-retime')");
 			else if (abc9) {
