@@ -51,7 +51,7 @@ module CFG1 (
 	endspecify
 endmodule
 
-(* abc9_lut=2 *)
+(* abc9_lut=1 *)
 module CFG2 (
 	output Y,
 	input A,
@@ -65,7 +65,7 @@ module CFG2 (
 	endspecify
 endmodule
 
-(* abc9_lut=3 *)
+(* abc9_lut=1 *)
 module CFG3 (
 	output Y,
 	input A,
@@ -81,7 +81,7 @@ module CFG3 (
 	endspecify
 endmodule
 
-(* abc9_lut=3 *)
+(* abc9_lut=1 *)
 module CFG4 (
 	output Y,
 	input A,
