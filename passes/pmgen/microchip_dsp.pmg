@@ -126,7 +126,7 @@ code sigA sigB sigD preAdderStatic moveBtoA
 			// sigA should be the input to the multiplier without the preAdd. sigB and sigD should be 
 			//the preAdd inputs. If our "A" input into the multiplier is from the preAdd (not sigA), then 
 			// we basically swap it.
-			sigA = port(dsp, \B);
+			sigA = sigB;
 		}
 
 		// port B of preAdderStatic must be mapped to port D of DSP for subtraction
