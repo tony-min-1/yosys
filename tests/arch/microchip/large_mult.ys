@@ -14,10 +14,23 @@
 # ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 # OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
-read_verilog large_mult.v
-
-synth_microchip -top large_mult -abc9 -family polarfire -noiopad
-
-select -assert-count 2 t:MACC_PA
+# regular multiply
+read_verilog ../common/mul.v
+chparam -set X_WIDTH 8 -set Y_WIDTH 8 -set A_WIDTH 16
+hierarchy -top top
+proc
+synth_microchip -abc9 -family polarfire -noiopad
+cd top # Constrain all select calls below inside the top module
+select -assert-count 1 t:MACC_PA
 select -assert-none t:MACC_PA %% t:* %D
 
+# wide multiply
+design -reset
+read_verilog ../common/mul.v
+chparam -set X_WIDTH 30 -set Y_WIDTH 16 -set A_WIDTH 46
+hierarchy -top top
+proc
+synth_microchip -abc9 -family polarfire -noiopad
+cd top # Constrain all select calls below inside the top module
+select -assert-count 2 t:MACC_PA
+select -assert-none t:MACC_PA %% t:* %D
