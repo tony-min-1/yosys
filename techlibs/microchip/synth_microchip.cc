@@ -53,6 +53,9 @@ struct SynthMicrochipPass : public ScriptPass {
 		log("        Write the design to the specified BLIF file. Writing of an output file\n");
 		log("        is omitted if this parameter is not specified.\n");
 		log("\n");
+		log("    -vlog <file>\n");
+		log("        write the design to the specified Verilog file. writing of an output\n");
+		log("        file is omitted if this parameter is not specified.\n");
 		log("    -nobram\n");
 		log("        Do not use block RAM cells in output netlist\n");
 		log("\n");
@@ -93,7 +96,7 @@ struct SynthMicrochipPass : public ScriptPass {
 		log("\n");
 	}
 
-	std::string top_opt, edif_file, blif_file, family;
+	std::string top_opt, edif_file, blif_file, vlog_file, family;
 	bool flatten, retime, noiopad, noclkbuf, nobram, nocarry, nowidelut, nodsp;
 	bool abc9, dff;
 	int lut_size;
@@ -106,6 +109,7 @@ struct SynthMicrochipPass : public ScriptPass {
 		top_opt = "-auto-top";
 		edif_file.clear();
 		blif_file.clear();
+		vlog_file.clear();
 		family = "polarfire";
 		flatten = true;
 		retime = false;
@@ -144,6 +148,10 @@ struct SynthMicrochipPass : public ScriptPass {
 			}
 			if (args[argidx] == "-blif" && argidx + 1 < args.size()) {
 				blif_file = args[++argidx];
+				continue;
+			}
+			if (args[argidx] == "-vlog" && argidx + 1 < args.size()) {
+				vlog_file = args[++argidx];
 				continue;
 			}
 			if (args[argidx] == "-run" && argidx + 1 < args.size()) {
@@ -521,6 +529,12 @@ struct SynthMicrochipPass : public ScriptPass {
 		if (check_label("blif")) {
 			if (!blif_file.empty() || help_mode)
 				run(stringf("write_blif %s", blif_file.c_str()));
+		}
+
+		if (check_label("vlog"))
+		{
+			if (!vlog_file.empty() || help_mode)
+				run(stringf("write_verilog %s", help_mode ? "<file-name>" : vlog_file.c_str()));
 		}
 	}
 } SynthMicrochipPass;
