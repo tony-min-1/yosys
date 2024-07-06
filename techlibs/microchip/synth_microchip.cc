@@ -87,8 +87,8 @@ struct SynthMicrochipPass : public ScriptPass {
 		log("        Run 'abc' with '-D 1' option to enable flip-flop retiming.\n");
 		log("        implies -dff.\n");
 		log("\n");
-		log("    -abc9\n");
-		log("        Use new ABC9 flow (EXPERIMENTAL)\n");
+		log("    -abc\n");
+		log("        Use classic ABC flow instead of ABC9\n");
 		log("\n");
 		log("\n");
 		log("The following commands are executed by this synthesis command:\n");
@@ -119,7 +119,7 @@ struct SynthMicrochipPass : public ScriptPass {
 		nobram = false;
 		nowidelut = false;
 		nodsp = false;
-		abc9 = false;
+		abc9 = true;
 		dff = false;
 		lut_size = 4;
 
@@ -198,8 +198,8 @@ struct SynthMicrochipPass : public ScriptPass {
 				nobram = true;
 				continue;
 			}
-			if (args[argidx] == "-abc9") {
-				abc9 = true;
+			if (args[argidx] == "-abc") {
+				abc9 = false;
 				continue;
 			}
 			if (args[argidx] == "-nodsp") {
