@@ -19,7 +19,7 @@ read_verilog ../common/mul.v
 chparam -set X_WIDTH 8 -set Y_WIDTH 8 -set A_WIDTH 16
 hierarchy -top top
 proc
-synth_microchip -abc9 -family polarfire -noiopad
+synth_microchip -family polarfire -noiopad
 cd top # Constrain all select calls below inside the top module
 select -assert-count 1 t:MACC_PA
 select -assert-none t:MACC_PA %% t:* %D
@@ -35,7 +35,7 @@ module signed_mult(
 assign out_Y = in_A * in_B;
 endmodule
 EOT
-synth_microchip -abc9 -top signed_mult -family polarfire -noiopad
+synth_microchip -top signed_mult -family polarfire -noiopad
 select -assert-count 1 t:MACC_PA
 select -assert-none t:MACC_PA %% t:* %D
 
@@ -45,7 +45,7 @@ read_verilog ../common/mul.v
 chparam -set X_WIDTH 30 -set Y_WIDTH 16 -set A_WIDTH 46
 hierarchy -top top
 proc
-synth_microchip -abc9 -family polarfire -noiopad
+synth_microchip -family polarfire -noiopad
 cd top # Constrain all select calls below inside the top module
 select -assert-count 2 t:MACC_PA
 select -assert-none t:MACC_PA %% t:* %D

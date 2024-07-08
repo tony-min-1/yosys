@@ -17,6 +17,6 @@
 read_verilog ../common/blockram.v
 hierarchy -top sync_ram_sp
 chparam -set DATA_WIDTH 20 -set ADDRESS_WIDTH 10
-synth_microchip -abc9 -top sync_ram_sp -family polarfire -noiopad
+synth_microchip -top sync_ram_sp -family polarfire -noiopad
 select -assert-count 1 t:RAM1K20
 select -assert-none t:RAM1K20 %% t:* %D

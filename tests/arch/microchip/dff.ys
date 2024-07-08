@@ -33,28 +33,28 @@ always @(posedge clk, negedge rst) begin
 end
 endmodule
 EOT
-synth_microchip -abc9 -top top -family polarfire -noiopad
+synth_microchip -top top -family polarfire -noiopad
 select -assert-count 1 t:SLE
 select -assert-count 1 t:CLKBUF
 select -assert-none t:SLE t:CLKBUF %% t:* %D
 
 design -reset
 read_verilog -D NO_INIT ../common/dffs.v
-synth_microchip -abc9 -top dff -family polarfire -noiopad
+synth_microchip -top dff -family polarfire -noiopad
 select -assert-count 1 t:SLE
 select -assert-count 1 t:CLKBUF
 select -assert-none t:SLE t:CLKBUF %% t:* %D
 
 design -reset
 read_verilog -D NO_INIT ../common/dffs.v
-synth_microchip -abc9 -top dffe -family polarfire -noiopad
+synth_microchip -top dffe -family polarfire -noiopad
 select -assert-count 1 t:SLE
 select -assert-count 1 t:CLKBUF
 select -assert-none t:SLE t:CLKBUF %% t:* %D
 
 design -reset
 read_verilog -D NO_INIT ../common/adffs.v
-synth_microchip -abc9 -top adff -family polarfire -noiopad
+synth_microchip -top adff -family polarfire -noiopad
 select -assert-count 1 t:SLE
 select -assert-count 1 t:CLKBUF
 select -assert-count 1 t:CFG1
@@ -62,14 +62,14 @@ select -assert-none t:SLE t:CLKBUF t:CFG1 %% t:* %D
 
 design -reset
 read_verilog -D NO_INIT ../common/adffs.v
-synth_microchip -abc9 -top adffn -family polarfire -noiopad
+synth_microchip -top adffn -family polarfire -noiopad
 select -assert-count 1 t:SLE
 select -assert-count 1 t:CLKBUF
 select -assert-none t:SLE t:CLKBUF %% t:* %D
 
 design -reset
 read_verilog -D NO_INIT ../common/adffs.v
-synth_microchip -abc9 -top dffs -family polarfire -noiopad
+synth_microchip -top dffs -family polarfire -noiopad
 select -assert-count 1 t:SLE
 select -assert-count 1 t:CLKBUF
 select -assert-count 1 t:CFG1
